@@ -19,13 +19,16 @@ function LunchCheckController($scope){
   $scope.showMessage = function(){
     if($scope.wcount > 0){
         if($scope.wcount > 3){
-          $scope.message = "Too much!"
+          $scope.message = "Too much!";
+          $scope.colorValue ="green";
         } else{
-          $scope.message = "Enjoy!"
+          $scope.message = "Enjoy!";
+          $scope.colorValue ="green";
         }
 
     } else{
-      $scope.message = "Please enter data first"
+      $scope.message = "Please enter data first";
+      $scope.colorValue = "Red";
     }
   }
 

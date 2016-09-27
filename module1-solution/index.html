@@ -16,7 +16,7 @@
         <input name="myfield" type="text"  ng-model="name" ng-keyup="countWords();"
         placeholder="list comma separated dishes you usually have for lunch">
       </div>
-      <div class="form-group">
+      <div class="form-group"  ng-style="{color:colorValue}">
         <button class="btn btn-default" ng-click="showMessage()">Check If Too Much</button>
         <br>
         {{message}}
