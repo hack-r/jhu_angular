@@ -3,7 +3,10 @@
 
 angular.module('LunchCheck',[])
 
-.controller('LunchCheckController',function($scope){
+.controller('LunchCheckController', LunchCheckController);
+ LunchCheckController.$inject = ['$scope'];
+
+function LunchCheckController($scope){
   $scope.name = "list comma separated dishes you usually have for lunch";
   $scope.wcount = 1;
   $scope.message="";
@@ -27,6 +30,6 @@ angular.module('LunchCheck',[])
     var count = arr.length;
     return count;
   }
-});
+}
 
 })();
