@@ -7,7 +7,7 @@ angular.module('LunchCheck',[])
  LunchCheckController.$inject = ['$scope'];
 
 function LunchCheckController($scope){
-  $scope.wcount = 1;
+  $scope.wcount = 0;
   $scope.message="";
   console.log($scope.name);
 
@@ -17,10 +17,15 @@ function LunchCheckController($scope){
   };
 
   $scope.showMessage = function(){
-    if($scope.wcount > 3){
-      $scope.message = "Too much!"
+    if($scope.wcount > 0){
+        if($scope.wcount > 3){
+          $scope.message = "Too much!"
+        } else{
+          $scope.message = "Enjoy!"
+        }
+
     } else{
-      $scope.message = "Enjoy!"
+      $scope.message = "Please enter data first"
     }
   }
 
