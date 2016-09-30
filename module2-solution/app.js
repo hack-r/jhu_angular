@@ -8,17 +8,17 @@
 'use strict';
 
 angular.module('ShoppingListCheckOff', [])
-.controller('ShoppingListController1', ShoppingListController1)
-.controller('ShoppingListController2', ShoppingListController2)
-.factory('ShoppingListFactory', ShoppingListFactory);
+.controller('ToBuyController ', ToBuyController )
+.controller('AlreadyBoughtController', AlreadyBoughtController)
+.service('ShoppingListCheckOffService', ShoppingListCheckOffService);
 
 // LIST #1 - controller
-ShoppingListController1.$inject = ['ShoppingListFactory'];
-function ShoppingListController1(ShoppingListFactory) {
+ToBuyController.$inject = ['ShoppingListCheckOffService'];
+function ToBuyController(ShoppingListCheckOffService) {
   var list1 = this;
 
   // Use factory to create new shopping list service
-  var shoppingList = ShoppingListFactory();
+  var shoppingList = ShoppingListCheckOffService();
 
   list1.items = shoppingList.getItems();
 
@@ -36,12 +36,12 @@ function ShoppingListController1(ShoppingListFactory) {
 
 
 // LIST #2 - controller
-ShoppingListController2.$inject = ['ShoppingListFactory'];
-function ShoppingListController2(ShoppingListFactory) {
+AlreadyBoughtController.$inject = ['ShoppingListCheckOffService'];
+function AlreadyBoughtController(ShoppingListCheckOffService) {
   var list2 = this;
 
   // Use factory to create new shopping list service
-  var shoppingList = ShoppingListFactory(3);
+  var shoppingList = ShoppingListCheckOffService(3);
 
   list2.items = shoppingList.getItems();
 
@@ -94,7 +94,7 @@ function ShoppingListService(maxItems) {
 }
 
 
-function ShoppingListFactory() {
+function ShoppingListCheckOffService() {
   var factory = function (maxItems) {
     return new ShoppingListService(maxItems);
   };
