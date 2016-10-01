@@ -1,11 +1,12 @@
-<!doctype html>
-<html lang="en" ng-app="ShoppingListCheckOff">
+<!DOCTYPE html>
+<html ng-app='ShoppingListApp'>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
-    <title>Shopping List Check Off</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <title>Shopping List Check Off</title>
     <style>
       .emptyMessage {
         font-weight: bold;
@@ -24,37 +25,43 @@
       }
     </style>
   </head>
-<body>
-  <div class="container" ng-controller="ToBuyController">
-  <h1>Shopping List Check Off</h1>
+  <body>
+    <h1>Shopping List Check Off</h1>
+    <div class="row" >
 
-  <div class="row" >
+      <!-- To Buy List -->
+      <div class="col-md-6">
+       <h2>To Buy:</h2>
 
-    <!-- To Buy List -->
-    <div class="col-md-6">
-     <h2>To Buy:</h2>
-     <ul>
-       <li ng-repeat="item in shoppingList">Buy {{ item.quantity }}  {{ item.name }}
-         <button class="btn btn-default" ng.click="removeItem()"><span class="glyphicon glyphicon-ok"></span>
-           Bought
-         </button>
-       </li>
-       <!-- <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-       <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li> -->
-     </ul>
-     <div class="emptyMessage" ng-show=""></div>
+    <!-- Preconfigured List -->
+    <div id="list" ng-controller='ToBuyController as list'>
+      <h3>Shopping List</h3>
+      <input type="text" ng-model="list.itemName" placeholder="item name">
+      <input type="text" ng-model="list.itemQuantity" placeholder="quantity">
+      <button ng-click="list.addItem();">Add Item</button>
+      <ol>
+        <li ng-repeat="item in list.items">
+           Buy {{ item.quantity }} {{ item.name }}
+          <button class="btn btn-default" ng-click="list.removeItem($index);"><span class="glyphicon glyphicon-ok"></span>Bought</button>
+        </li>
+      </ol>
+      <div ng-if="list.errorMessage" class="error"> <span style="color:red">
+        <font size="10">{{list.errorMessage}} &#128523;</font> </span></div>
     </div>
 
+    </div>
     <!-- Already Bought List -->
-    <div class="col-md-6">
+    <div class="col-md-6" ng-controller="AlreadyBoughtController as list">
      <h2>Already Bought:</h2>
      <ul>
-       <li>Bought 10 cookies</li>
+       <li ng-repeat="item in list.bought">
+          Bought {{ item.quantity }} {{ item.name }}
+       </li>
      </ul>
-     <div class="emptyMessage" ng-show="list.errorMessage">Nothing bought yet.</div>
+     <div class="emptyMessage" ng-if="list.bought.length === 0"> Nothing bought yet. &#x1f622;</div>
     </div>
   </div>
 </div>
 
-</body>
+  </body>
 </html>
