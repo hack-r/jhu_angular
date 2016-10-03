@@ -20,12 +20,16 @@
       <button class="btn btn-primary" ng-click="narrow.getMatchedMenuItems()">
         Narrow It Down For Me!</button>
     </div>
-
+<br> <br>
+<p align="left">
     <ul>
-      <li ng-repeat="item in narrow.foundItems | filter : searchTerm">{{ item }}</li>
-  </ul>
+      <li>test</li>
+      <li>etst {{menu}}</li><!-- -->
 
-    <!-- Bonus loader (see Bonus section of the assignment) -->
+      <!-- <li ng-repeat="item in searchedMenu">{{ item | json }}</li> -->
+  </ul>
+</p>
+    <!-- Bonus loader (see Bonus section of the assignment)  | filter : searchTerm-->
     <items-loader-indicator></items-loader-indicator>
 
     <!-- found-items should be implemented as a component -->

@@ -13,8 +13,31 @@ function NarrowItDownController(MenuSearchService) {
 
   var promise = MenuSearchService.getMatchedMenuItems();
 
+  var description;
+
+  var searchValue = "ton";
+  function containsFilter(value) {
+    return value.indexOf(searchValue) !== -1;
+  }
+
+
+
   promise.then(function (response) {
-    menu.categories = response.data;
+    menu.results = response.data;
+    menu.results = menu.results.menu_items;
+
+
+    description = response.data;
+    description = description.menu_items;
+
+    for(var i=0;i<description.length;i++){
+      description[i] = description[i].description;
+    }
+
+    var searchedMenu;
+    menu.searchedMenu = description.filter(containsFilter);
+    console.log("Searched menu: ", menu.searchedMenu);
+
   })
   .catch(function (error) {
     console.log("Something went terribly wrong.");
@@ -42,12 +65,14 @@ function MenuSearchService($http, ApiBasePath) {
     // process result and only keep items that match
     var foundItems = $http({
       method: "GET",
-      url: (ApiBasePath),
-      //params: {
-        //description: searchTerm
-      //}
+      url: (ApiBasePath)
+      // ,
+      // params: {
+      //   description: "chicken"
+      // }
     });
     console.log(foundItems);
+    //console.log(foundItems);
     return foundItems;
   };
 
@@ -60,7 +85,7 @@ function MenuSearchService($http, ApiBasePath) {
         category: shortName
       }
     });
-
+    $scope.results = response;
     return response;
   };
 
