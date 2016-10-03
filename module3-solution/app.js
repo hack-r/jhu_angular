@@ -12,7 +12,7 @@ function NarrowItDownController(MenuSearchService) {
   var menu = this;
 
   var promise = MenuSearchService.getMatchedMenuItems();
-
+  var item_name = ["",""];
   var description;
 
   var searchValue = "ton";
@@ -20,22 +20,28 @@ function NarrowItDownController(MenuSearchService) {
     return value.indexOf(searchValue) !== -1;
   }
 
-
-
   promise.then(function (response) {
     menu.results = response.data;
     menu.results = menu.results.menu_items;
 
-
     description = response.data;
     description = description.menu_items;
+    console.log(description);
+
+    var searchedMenu = {};
+    searchedMenu.name = [];
+    searchedMenu.short_name = [];
+    searchedMenu.description = [];
 
     for(var i=0;i<description.length;i++){
-      description[i] = description[i].description;
+        searchedMenu.name[i] = description[i].name;
+        searchedMenu.short_name[i] = description[i].short_name;
+        searchedMenu.description[i] = description[i].description;
     }
 
-    var searchedMenu;
-    menu.searchedMenu = description.filter(containsFilter);
+    
+    console.log(searchedMenu);
+    menu.searchedMenu = searchedMenu;//description.filter(containsFilter);
     console.log("Searched menu: ", menu.searchedMenu);
 
   })
