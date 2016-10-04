@@ -4,11 +4,11 @@
         .controller('NarrowItDownController', NarrowItDownController)
         .service('MenuSearchService', MenuSearchService)
         .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
-        .directive('founditems', founditemsDirective);
+        .directive('foundItems', FoundItemsDirective);
 
-    function founditemsDirective() {
+    function FoundItemsDirective() {
         var ddo = {
-            templateUrl: 'founditems.html',
+            templateUrl: 'foundItems.html',
             scope: {
                 items: '<',
                 myTitle: '@title',
@@ -22,7 +22,7 @@
         return ddo;
     }
 
-    function founditemsDirectiveController() {
+    function FoundItemsDirectiveController() {
         var menu = this;
     }
 
@@ -31,25 +31,25 @@
     function NarrowItDownController(MenuSearchService) {
         var menu = this;
         menu.searchTerm = "";
-        menu.founditems = "";
+        menu.foundItems = "";
         menu.search = function() {
             menu.nothingFound = "";
             if (menu.searchTerm) { // check if empty
                 var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm.toLowerCase());
-                promise.then(function(founditems) {
-                    if (founditems.length == 0) {
-                        menu.nothingFound = "Nothing found :-(";
+                promise.then(function(foundItems) {
+                    if (foundItems.length == 0) {
+                        menu.nothingFound = "Nothing found";
                     }
-                    menu.founditems = founditems;
+                    menu.foundItems = foundItems;
                 })
 
             } else {
                 menu.nothingFound = "Nothing found";
-                menu.founditems = "";
+                menu.foundItems = "";
             }
         };
         menu.removeItem = function(itemIndex) {
-            menu.founditems.splice(itemIndex, 1);
+            menu.foundItems.splice(itemIndex, 1);
         };
     }
 
@@ -65,17 +65,17 @@
 
             return response.then(function(result) {
                 var menuData = result.data;
-                var founditems = [];
+                var foundItems = [];
                 menuData.menu_items.forEach(function(item) {
                     if (item.description.indexOf(searchTerm) != -1) {
-                        founditems.push({
+                        foundItems.push({
                             name: item.name,
                             short_name: item.short_name,
                             description: item.description
                         });
                     }
                 });
-                return founditems;
+                return foundItems;
             });
         };
     }
