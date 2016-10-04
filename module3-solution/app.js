@@ -4,11 +4,11 @@
         .controller('NarrowItDownController', NarrowItDownController)
         .service('MenuSearchService', MenuSearchService)
         .constant('ApiBasePath', "https://davids-restaurant.herokuapp.com")
-        .directive('foundItems', FoundItemsDirective);
+        .directive('founditems', founditemsDirective);
 
-    function FoundItemsDirective() {
+    function founditemsDirective() {
         var ddo = {
-            templateUrl: 'foundItems.html',
+            templateUrl: 'founditems.html',
             scope: {
                 items: '<',
                 myTitle: '@title',
@@ -22,7 +22,7 @@
         return ddo;
     }
 
-    function FoundItemsDirectiveController() {
+    function founditemsDirectiveController() {
         var menu = this;
     }
 
@@ -31,25 +31,25 @@
     function NarrowItDownController(MenuSearchService) {
         var menu = this;
         menu.searchTerm = "";
-        menu.foundItems = "";
+        menu.founditems = "";
         menu.search = function() {
             menu.nothingFound = "";
             if (menu.searchTerm) { // check if empty
                 var promise = MenuSearchService.getMatchedMenuItems(menu.searchTerm.toLowerCase());
-                promise.then(function(foundItems) {
-                    if (foundItems.length == 0) {
+                promise.then(function(founditems) {
+                    if (founditems.length == 0) {
                         menu.nothingFound = "Nothing found :-(";
                     }
-                    menu.foundItems = foundItems;
+                    menu.founditems = founditems;
                 })
 
             } else {
                 menu.nothingFound = "Nothing found";
-                menu.foundItems = "";
+                menu.founditems = "";
             }
         };
         menu.removeItem = function(itemIndex) {
-            menu.foundItems.splice(itemIndex, 1);
+            menu.founditems.splice(itemIndex, 1);
         };
     }
 
@@ -65,17 +65,17 @@
 
             return response.then(function(result) {
                 var menuData = result.data;
-                var foundItems = [];
+                var founditems = [];
                 menuData.menu_items.forEach(function(item) {
                     if (item.description.indexOf(searchTerm) != -1) {
-                        foundItems.push({
+                        founditems.push({
                             name: item.name,
                             short_name: item.short_name,
                             description: item.description
                         });
                     }
                 });
-                return foundItems;
+                return founditems;
             });
         };
     }
