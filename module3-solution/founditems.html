@@ -1,8 +1,8 @@
 <ul>
- <li ng-repeat="item in menu.items">
+ <li ng-repeat="item in narrow.items">
   Name: {{ item.name }}, <br>
   Short Name: {{ item.short_name }}, <br>
   Description: {{ item.description }}
-   <button type="button" name="button" ng-click="menu.onRemove({index: $index});">Don't want this one!</button>
+   <button type="button" name="button" ng-click="narrow.onRemove({index: $index});">Don't want this one!</button>
  </li>
 </ul>
