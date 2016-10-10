@@ -1,32 +1,23 @@
-<script src="Https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/SVG-Morpheus/0.1.8/svg-morpheus.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="routes.js"></script>
-<script src="menuapp.module.js"></script>
-<script src="data.module.js"></script>
-<script src="routes.js"></script>
-<script src="categories.controller.js"></script>
-<script src="items.controller.js"></script>
-<script src="data.service.js"></script>
-<script src="categories.component.js"></script>
-<script src="items.component.js"></script>
-
-<!DOCTYPE html>
-<html ng-app='MenuApp'>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
+    <title>Menu Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
-    <title>Menu App</title>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
-    <body ng-app="MenuApp">
-        <ui-view></ui-view>
+<body ng-app="MenuApp">
+    <ui-view></ui-view>
 
-  </body>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
+    <script src="menuapp.module.js"></script>
+    <script src="data.module.js"></script>
+    <script src="routes.js"></script>
+    <script src="categories.controller.js"></script>
+    <script src="items.controller.js"></script>
+    <script src="data.service.js"></script>
+    <script src="categories.component.js"></script>
+    <script src="items.component.js"></script>
+</body>
 </html>
