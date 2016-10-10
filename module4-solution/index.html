@@ -1,23 +1,50 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html ng-app='MenuApp'>
   <head>
-    <title>Menu Details</title>
+    <meta charset="utf-8">
+    <title>Module 4 solution — AngularJS</title>
+    <meta name="description" content="AngularJS. Module 4 — Components, Events, Modules, and Routing.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
   </head>
-<body ng-app="MenuApp">
+  <body>
+
+   <section class="container" align="center">
+    <h1>Welcome to our Restaurant</h1>
+
     <ui-view></ui-view>
 
-    <script src="lib/angular.min.js"></script>
-    <script src="lib/angular-ui-router.min.js"></script>
-    <script src="menuapp.module.js"></script>
-    <script src="data.module.js"></script>
-    <script src="routes.js"></script>
-    <script src="categories.controller.js"></script>
-    <script src="items.controller.js"></script>
-    <script src="data.service.js"></script>
-    <script src="categories.component.js"></script>
-    <script src="items.component.js"></script>
-</body>
+   </section>
+
+    <!-- Libraries -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.7.1/angular-material-icons.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/SVG-Morpheus/0.1.8/svg-morpheus.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <!-- Modules -->
+    <script src="src/menuapp.module.js"></script>
+    <script src="src/data.module.js"></script>
+
+    <!-- Routes -->
+    <script src="src/routes.js"></script>
+
+    <!-- Controllers -->
+    <script src="src/categories.controller.js"></script>
+    <script src="src/items.controller.js"></script>
+
+    <!-- Services -->
+    <script src="src/menudata.service.js"></script>
+
+    <!-- Components -->
+    <script src="src/categories.component.js"></script>
+    <script src="src/items.component.js"></script>
+
+  </body>
 </html>
